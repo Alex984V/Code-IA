@@ -1,0 +1,205 @@
+/* Reset e global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #1A1A2E; /* Fundo escuro Deep Blue */
+    color: #fff; /* Cor do texto padrão em branco */
+}
+
+/* Header e navegação */
+header {
+    background-color: #0F0F1C; /* Cor mais escura para o cabeçalho */
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: rgba(74, 72, 72, 0.042) 0px 48px 100px 0px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #3E33D9; /* Borda roxa no header */
+
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+}
+
+ul.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+ul.menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+ul.menu li a:hover {
+    text-decoration: underline;
+}
+
+
+.menu-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    /* Mantenho estas cores claras para contraste dentro do dropdown */
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9; 
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Container dos planos */
+.plan-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* CORREÇÃO MANTIDA */
+    margin: 40px auto; /* distancia do topo */
+    max-width: 1200px;
+    width: 90%;
+    gap: 20px; /* espaçamento uniforme entre os cards */
+}
+
+/* Cards dos planos */
+.plan-card {
+    background-color: #0F0F1C; /* Fundo do card escuro */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5); /* Sombra mais escura */
+    padding: 40px 20px 20px 20px;
+    text-align: center;
+    width: 300px;
+    color: #fff; /* Texto dentro do card em branco */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    min-height: 450px; 
+    border: 1px solid #3A3A5E; /* Borda sutil */
+}
+
+.plan-card h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Preço em roxo */
+.plan-card p.price {
+    font-size: 28px; /* Aumentei um pouco */
+    font-weight: bold;
+    color: #520DC9; /* Cor roxa de destaque */
+    margin-bottom: 25px; /* Aumentei a margem */
+}
+
+.plan-card ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px; /* Aumentei a margem */
+    padding-left: 0;
+}
+
+.plan-card ul li {
+    margin: 10px 0;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+}
+
+/* Ícone de "check" em roxo */
+.plan-card ul li::before {
+    content: "✓";
+    color: #520DC9; 
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-right: 10px;
+}
+
+/* Botões dos planos (em roxo) */
+.btn-select {
+    background-color: #520DC9; /* Roxo principal */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Borda mais arredondada */
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%; /* Botão full width */
+    margin-top: auto; /* Garante que fique no fim do card */
+}
+
+.btn-select:hover {
+    background-color: #6C3AC9; /* Roxo um pouco mais claro no hover */
+    transform: translateY(-2px);
+}
+
+/* Destaque para plano atual (em outra cor para contraste) */
+.btn-select.selected {
+    background-color: #28a745; /* Mantenho o verde para o selecionado, como um "OK" */
+    cursor: default;
+}
+
+/* Footer */
+footer {
+    background-color: #0F0F1C; /* Cor do header/card */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}

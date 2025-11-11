@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  /* Usei o gradiente que você usou no login original */
+  background: linear-gradient(135deg, #1A1A2E, #1A1A2E); 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-box { 
+  background-color: #0F0F1C;
+  padding: 40px; 
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 95%;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.login-box h1 {
+  margin-bottom: 30px;
+  font-size: 26px;
+  color: #ffffff;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #f8f7f7;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 6px rgba(40, 167, 69, 0.3);
+}
+
+
+.btn-login { 
+  width: 100%;
+  padding: 12px;
+  background-color: #520DC9;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 20px;
+  margin-bottom: 15px; 
+}
+
+.btn-login:hover {
+  background-color: #520DC9;
+  transform: scale(1.02);
+}
+
+/* 1. Estilo para o link "fazer o Login" (a) */
+a {
+  display: block;
+  margin-top: 5px; 
+  font-size: 14px;
+  /* Cor azul para o link de Login/Cadastro */
+  color: #007bff; 
+  text-decoration: none;
+  transition: color 0.3s;
+  margin-bottom: 10px; /* Adiciona espaço para o "ou" */
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* 2. Estilo para o texto "ou" (usando .divider) */
+.divider {
+  margin: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #fcfafa;
+}
+
+/* 3. Estilo para o botão/link Entrar com Google */
+.btn-google-login {
+  display: inline-block; /* Faz com que o link se comporte como botão */
+  /* Cor azul do Google */
+  background-color: #4285F4; 
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none; /* Remove o sublinhado */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-google-login:hover {
+  /* Cor azul mais escura no hover */
+  background-color: #357ae8;
+  transform: scale(1.02);
+}
+
+
+#message, #error-message {
+    color: #fff; /* Branco */
+    font-weight: bold;
+    margin-top: 15px;
+}

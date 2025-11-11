@@ -1,0 +1,155 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1A1A2E;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* PERFIL CONTAINER */
+.perfil-container {
+    background-color: #0F0F1C;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+    padding: 30px;
+    box-shadow: rgba(0,0,0,0.2) 0px 10px 30px;
+    color: #fff;
+}
+
+/* VOLTAR */
+.voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.seta-voltar {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    /* --- LINHA ADICIONADA PARA MUDAR A COR PARA BRANCO --- */
+    filter: invert(100%);
+}
+
+/* LOGO */
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.logo img {
+    width: 120px;
+}
+
+/* PERFIL INFO */
+.perfil-info {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.perfil-imagem img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    /* BORDA: Roxo Principal Forte */
+    border: 3px solid #6610f2; 
+}
+.perfil-info h1 {
+    font-size: 24px;
+    /* COR ALTERADA PARA ROXO SUAVE: #bb86fc */
+    color: #bb86fc;
+    margin-bottom: 5px;
+}
+.perfil-info p {
+    font-size: 16px;
+    color: #fff; /* Email e plano em branco */
+    margin-bottom: 10px;
+}
+.btn-editar {
+    /* BOTÃO: Roxo Principal Forte */
+    background-color: #6610f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-editar:hover {
+    /* HOVER: Roxo Escuro */
+    background-color: #520dc9;
+}
+
+/* PLANOS */
+.plan-title {
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* CONTAINER DE PLANOS */
+.plan-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* CADA PLANO */
+.plan {
+    background-color: #1A1A2E;
+    border-radius: 12px;
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: rgba(0,0,0,0.15) 0px 5px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* NOME E VALOR */
+.plan h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    /* COR ALTERADA PARA ROXO SUAVE: #bb86fc */
+    color: #bb86fc; 
+}
+.plan .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff; /* Valor em branco */
+    margin-bottom: 20px;
+}
+
+/* BOTÃO */
+.btn-select {
+    /* BOTÃO: Roxo Principal Forte */
+    background-color: #6610f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-select:hover {
+    /* HOVER: Roxo Escuro */
+    background-color: #520dc9;
+}
+
+/* BOTÃO SELECIONADO */
+.selected {
+    /* SELECIONADO: Roxo Escuro */
+    background-color: #520dc9;
+}

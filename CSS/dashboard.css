@@ -1,0 +1,129 @@
+/* dashboard.css - Estilos para a tela pós-login */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1A1A2E; /* Fundo escuro */
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header (Copiado do styles.css/home.html para consistência) */
+header {
+    background-color: #0F0F1C;
+    padding: 10px 0;
+    box-shadow: rgba(74, 72, 72, 0.042) 0px 48px 100px 0px;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.logo-img {
+    width: 75px;
+    height: auto;
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.dashboard-box {
+    background-color: #0F0F1C; /* Container mais escuro */
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.dashboard-box h1 {
+    color: #520DC9; /* Cor de destaque CodeAI */
+    margin-bottom: 15px;
+    font-size: 2.2em;
+}
+
+.dashboard-box p {
+    margin-bottom: 30px;
+    color: #ccc;
+    font-size: 1.1em;
+}
+
+/* Links de Ação */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-action {
+    display: block;
+    padding: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Estilo para o botão principal (Gerar Imagens) */
+.btn-action {
+    background-color: #5a6268; /* Azul primário */
+    color: #fff;
+}
+.btn-action:hover {
+    background-color: #520DC9;
+    transform: translateY(-2px);
+}
+
+/* Estilo para o botão secundário (Planos) */
+.btn-action.secondary {
+    background-color: #5a6268; /* Amarelo (ou outra cor de destaque) */
+    color: #eeeded;
+}
+.btn-action.secondary:hover {
+    background-color: #520DC9;
+    transform: translateY(-2px);
+}
+
+/* Estilo para o botão terciário (Perfil) */
+.btn-action.tertiary {
+    background-color: #5a6268; /* Cinza */
+    color: #fff;
+}
+.btn-action.tertiary:hover {
+    background-color: #520DC9;
+    transform: translateY(-2px);
+}
+
+/* Logout Link */
+.logout-link a {
+    color: #dc3545; /* Vermelho */
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    display: block;
+}
+.logout-link a:hover {
+    color: #c82333;
+}

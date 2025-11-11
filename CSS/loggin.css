@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1A1A2E, #1A1A2E);
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.login-box {
+  background-color: #0F0F1C;
+  /* Espaçamento interno mais equilibrado */
+  padding: 40px 40px; 
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  /* Ajustei a largura para um padrão mais comum */
+  width: 400px; 
+  max-width: 95%;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.login-box h1 {
+  margin-bottom: 30px; 
+  font-size: 26px;
+  color: rgb(255, 255, 255)
+}
+
+/* Removi .input-group pois não estava no HTML, mas podemos estilizar o form/labels */
+form label {
+  display: block;
+  text-align: left;
+  /* Espaço entre o label e o input */
+  margin-bottom: 5px; 
+  font-weight: 600;
+  color: #bdbdbd;
+  /* Adicionei uma margem inferior para separar do próximo campo */
+  margin-top: 15px; 
+}
+
+/* Remove a margem superior do primeiro label, se desejar */
+form label:first-child {
+    margin-top: 0;
+}
+
+
+form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  /* Margem para separar o input do botão ou do próximo label */
+  margin-bottom: 20px; 
+}
+
+form input:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 6px rgba(40, 167, 69, 0.3);
+}
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: #520DC9;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  /* Adiciona uma margem após o botão de login */
+  margin-bottom: 15px; 
+}
+
+.btn-login:hover {
+  background-color: #520DC9;
+  transform: scale(1.02);
+}
+
+/* A tag P para mensagem de erro precisa de espaço */
+#error-message {
+    margin-bottom: 10px;
+}
+
+
+a {
+  display: block;
+  /* Espaçamento do link "Fazer o cadastro" */
+  margin-top: 5px; 
+  font-size: 14px;
+  color: #28a745;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #218838;
+}
+
+/* Removendo blocos de CSS não utilizados no HTML fornecido (como .divider, .google-login, etc.) 
+   para manter o arquivo limpo. Se precisar deles, podem ser reintroduzidos.
+   O bloco extra no final do seu CSS também foi removido.
+*/
