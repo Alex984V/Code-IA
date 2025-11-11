@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout de Pagamento</title>
+    <link rel="stylesheet" href="checkout.css">
+
+    <link rel="icon" href="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" type="image/png">
+
+
+</head>
+<body>
+    
+    <div class="checkout-container">
+        <h2 id="plan-name">Checkout de Pagamento</h2>
+        <p class="price" id="plan-price">R$ 0,00</p>
+
+        <div class="payment-options">
+            <div class="payment-tab active" id="tab-card">Cartão de Crédito</div>
+            <div class="payment-tab" id="tab-pix">Pix</div>
+        </div>
+
+        <div id="card-content">
+            <form id="form-card">
+                <input type="text" placeholder="Nome Completo (igual ao cartão)" required>
+                <input type="text" id="input-cpf" placeholder="CPF" maxlength="14" required>
+                <textarea placeholder="Endereço Completo (Rua, Número, Bairro, CEP)" rows="2" required></textarea>
+                
+                <hr>
+
+                <input type="text" placeholder="Número do Cartão" maxlength="19" required>
+                <div class="input-row">
+                    <input type="text" placeholder="Validade (MM/AA)" maxlength="5" required>
+                    <input type="text" placeholder="CVV" maxlength="3" required>
+                </div>
+                
+                <button type="submit" class="btn-pagar">Finalizar Pagamento com Cartão</button>
+            </form>
+        </div>
+
+        <div id="pix-content" style="display: none;">
+            <p>Escaneie o QR Code ou use o código Copia e Cola. O plano será ativado após a confirmação.</p>
+
+            <div class="qr-code">
+                <img src="https://randomqr.com/assets/images/rickroll-qrcode.webp" alt="QR Code de Exemplo" style="width:200px;">
+            </div>
+
+            <div class="pix-code-area">
+                <label for="pix-code">Pix Copia e Cola:</label><br>
+                <input 
+                    type="text" 
+                    id="pix-code" 
+                    class="pix-input" 
+                    value="Código de exemplo gerado com o valor do plano" 
+                    readonly>
+                <button class="btn-pagar" id="copy-btn">Copiar Código Pix</button>
+            </div>
+        </div>
+
+        <div class="voltar">
+            <button onclick="window.location.href='perfil.html'">← Voltar para o Perfil</button>
+            <button onclick="window.location.href='planos.html'">← Voltar para os Planos</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const plano = urlParams.get('plano'); 
+            
+            let nomePlano = '';
+            let preco = 'R$ 0,00';
+            let precoPixCode = 'Código de exemplo gerado com o valor do plano';
+
+            if (plano === 'mensal') {
+                nomePlano = 'Plano Mensal';
+                preco = 'R$ 19,90/mês';
+                precoPixCode = '00020101021226580014BR.GOV.BC.PIX0136d810f5e1-5e2a-4f9e-a1e6-2b4a5d8c3f7b520400005303986540519.905802BR5913CodeAI Tech6008BRASILIA62070503***6304CA5D'; 
+            } else if (plano === 'anual') {
+                nomePlano = 'Plano Anual';
+                preco = 'R$ 199,90/ano (Economize R$ 38,90!)';
+                precoPixCode = '00020101021226580014BR.GOV.BC.PIX0136c72b1a4f-7c1d-4a0b-9c3f-7e8b2a1f0d4c5204000053039865406199.905802BR5913CodeAI Tech6008BRASILIA62070503***63047712'; 
+            } else {
+                alert('Plano não especificado. Retornando ao Perfil.');
+                window.location.href = 'perfil.html';
+                return;
+            }
+
+            document.getElementById('plan-name').textContent = `Checkout: ${nomePlano}`;
+            document.getElementById('plan-price').textContent = preco;
+            document.getElementById('pix-code').value = precoPixCode;
+
+            async function updatePlanInBackend(planStatus) {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('Sessão expirada. Faça login novamente.');
+                    window.location.href = 'loggin.html';
+                    return false;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/user/update-plan', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ plano: planStatus })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || 'Falha ao atualizar o plano no servidor.');
+                    }
+
+                    let user = JSON.parse(localStorage.getItem('user')) || {};
+                    user.plan = planStatus; 
+                    localStorage.setItem('user', JSON.stringify(user));
+
+                    return true;
+
+                } catch (err) {
+                    console.error('Erro de API:', err.message);
+                    alert(`Erro ao finalizar pagamento: ${err.message}. Tente novamente.`);
+                    return false;
+                }
+            }
+
+            const tabCard = document.getElementById('tab-card');
+            const tabPix = document.getElementById('tab-pix');
+            const contentCard = document.getElementById('card-content');
+            const contentPix = document.getElementById('pix-content');
+
+            tabCard.addEventListener('click', () => {
+                tabCard.classList.add('active');
+                tabPix.classList.remove('active');
+                contentCard.style.display = 'block';
+                contentPix.style.display = 'none';
+            });
+
+            tabPix.addEventListener('click', () => {
+                tabPix.classList.add('active');
+                tabCard.classList.remove('active');
+                contentPix.style.display = 'block';
+                contentCard.style.display = 'none';
+            });
+
+            document.getElementById('form-card').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (await updatePlanInBackend(plano)) { 
+                    alert(`Pagamento do ${nomePlano} via Cartão finalizado! Plano ativado.`);
+                    window.location.href = 'perfil.html';
+                }
+            });
+
+            document.getElementById('copy-btn').addEventListener('click', async function() {
+                const pixCodeInput = document.getElementById('pix-code');
+                
+                navigator.clipboard.writeText(pixCodeInput.value)
+                    .then(async () => {
+                        const planStatus = `${plano}-pendente`;
+                        if (await updatePlanInBackend(planStatus)) {
+                            alert(`Código Pix copiado! O plano (${nomePlano}) foi definido como PENDENTE e será ativado após a confirmação do pagamento.`);
+                            window.location.href = 'perfil.html';
+                        }
+                    })
+                    .catch(err => alert("Erro ao copiar o código."));
+            });
+        });
+    </script>
+</body>
+</html>

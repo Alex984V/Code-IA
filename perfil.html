@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil do Usuário</title>
+<link rel="stylesheet" href="perfil.css">
+
+<link rel="icon" href="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" type="image/png">
+
+</head>
+<body>
+    <div class="perfil-container">
+        <!-- Voltar -->
+        <div class="voltar">
+            <a href="index.html">
+                <img src="https://img.icons8.com/ios-filled/50/000000/long-arrow-left.png" alt="Voltar" class="seta-voltar">
+            </a>
+        </div>
+
+        <div class="logo">
+            <img src="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" alt="Logo">
+        </div>
+
+        <!-- Informações do usuário -->
+        <div class="perfil-info">
+            <div class="perfil-imagem">
+                <img 
+                    id="user-profile-pic" 
+                    src="imagen/default-profile.png" 
+                    alt="Imagem de Perfil"
+                    onerror="this.src='imagen/is-there-any-possible-way-to-mak.png';"
+                >
+            </div>
+            <h1 id="user-name">Nome do Usuário</h1>
+            <p id="user-email">Email do usuário</p>
+            <p id="user-plano">Plano: Grátis</p>
+            <button id="logout-link" class="btn-editar">Sair</button>
+        </div>
+
+        <!-- Planos -->
+        <h2 class="plan-title">Meus Planos</h2>
+        <div class="plan-container">
+            <div class="plan">
+                <h3>Grátis</h3>
+                <p class="price">R$ 0,00</p>
+                <button id="plan-free" class="btn-select selected">Seu Plano Atual</button>
+            </div>
+
+            <div class="plan">
+                <h3>Mensal</h3>
+                <p class="price">R$ 19,90/mês</p>
+                <button id="plan-monthly" class="btn-select">Assinar Mensal</button>
+            </div>
+
+            <div class="plan">
+                <h3>Anual</h3>
+                <p class="price">R$ 199,00/ano</p>
+                <button id="plan-annual" class="btn-select">Assinar Anual</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="perfil.js"></script>
+    <script>
+        // Fallback: pega dados do localStorage se não estiver puxando do SQL
+        const user = JSON.parse(localStorage.getItem('user')); // {name, email, plan, profilePic}
+        const userProfilePic = document.getElementById('user-profile-pic');
+
+        if(user){
+            document.getElementById('user-name').textContent = user.name || "Usuário";
+            document.getElementById('user-email').textContent = `Email do usuário: ${user.email || "não disponível"}`;
+            document.getElementById('user-plano').textContent = `Plano: ${user.plan || "Grátis"}`;
+
+            userProfilePic.src = user.profilePic || "imagen/default-profile.png";
+
+            // Atualiza os botões dos planos
+            const planos = { 'grátis': 'plan-free', 'mensal': 'plan-monthly', 'anual': 'plan-annual' };
+            Object.keys(planos).forEach(key => {
+                const btn = document.getElementById(planos[key]);
+                if(btn){
+                    btn.textContent = (user.plan === key) ? "Seu Plano Atual" : `Assinar ${key.charAt(0).toUpperCase() + key.slice(1)}`;
+                }
+            });
+        }
+
+        // Logout
+        document.getElementById('logout-link').addEventListener('click', () => {
+            localStorage.removeItem('user');
+            window.location.href = 'loggin.html';
+        });
+
+        // Redirecionamento unificado para checkout
+        document.getElementById('plan-monthly').addEventListener('click', () => {
+            window.location.href = 'checkout.html?plano=mensal'; 
+        });
+
+        document.getElementById('plan-annual').addEventListener('click', () => {
+            window.location.href = 'checkout.html?plano=anual'; 
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos de Assinatura</title>
+    <link rel="stylesheet" href="planos.css">
+    <link rel="icon" href="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" type="image/png">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" alt="Logo" class="logo-img">
+            </div>
+            <div class="menu-profile">
+                <ul class="menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="planos.html">Planos</a></li>
+                    <li><a href="index.html">Estudar</a></li>
+                </ul>
+                <div class="profile dropdown">
+                    <img 
+                        id="user-profile-pic" 
+                        src="imagen/default-profile.png" 
+                        alt="Foto de Perfil" 
+                        class="profile-pic"
+                        onerror="this.src='imagen/is-there-any-possible-way-to-mak.png';"
+                    >
+                    <div class="dropdown-content">
+                        <a href="perfil.html" id="profile-link">Perfil</a>
+                        <a href="#" id="logout-link">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="plan-container">
+            <div class="plan-card">
+                <h2>Grátis</h2>
+                <p class="price">R$ 0,00</p>
+                <ul>
+                    <li>5 Gerações de imagem por dia</li>
+                    <li>Acesso a modelos básicos</li>
+                </ul>
+                <button id="plan-free" class="btn-select selected">Seu Plano Atual</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Mensal</h2>
+                <p class="price">R$ 19,90/mês</p>
+                <ul>
+                    <li>200 Gerações de imagem por dia</li>
+                    <li>Acesso a modelos avançados</li>
+                    <li>Suporte prioritário</li>
+                </ul>
+                <button id="plan-monthly" class="btn-select">Assinar Mensal</button>
+            </div>
+
+            <div class="plan-card">
+                <h2>Anual</h2>
+                <p class="price">R$ 199,00/ano</p>
+                <ul>
+                    <li>Gerações ilimitadas</li>
+                    <li>Acesso total a todos os modelos</li>
+                    <li>Suporte prioritário VIP</li>
+                    <li>Desconto de 20%</li>
+                </ul>
+                <button id="plan-annual" class="btn-select">Assinar Anual</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        'use strict';
+
+        // Verifica token
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'loggin.html';
+        }
+
+        // Logout
+        document.getElementById("logout-link").addEventListener("click", () => {
+            localStorage.removeItem("token");
+            window.location.href = "loggin.html";
+        });
+
+        // FOTO DE PERFIL DO USUÁRIO (Google)
+        const userData = JSON.parse(localStorage.getItem('userData')); 
+        const userProfilePic = document.getElementById('user-profile-pic');
+
+        if (userData && userData.picture) {
+            userProfilePic.src = userData.picture; // foto do Google
+        } else {
+            userProfilePic.src = "imagen/default-profile.png"; // padrão local
+        }
+
+        // Função para atualizar plano
+        // Redirecionamento unificado para checkout
+        document.getElementById('plan-monthly').addEventListener('click', () => {
+            window.location.href = 'checkout.html?plano=mensal'; 
+        });
+
+        document.getElementById('plan-annual').addEventListener('click', () => {
+            window.location.href = 'checkout.html?plano=anual'; 
+        });
+    </script>
+</body>
+</html>
+</html>

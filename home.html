@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>Home</title>
+
+<link rel="icon" href="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" type="image/png">
+
+</head>
+<body>
+
+<div class="fundo">
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" alt="Logo" class="logo-img">
+      </div>
+      <div class="menu-profile">
+        <ul class="menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="planos.html">Planos</a></li>
+          <li><a href="index.html">Estudar</a></li>
+        </ul>
+        <div class="profile dropdown">
+          <img 
+            id="user-profile-pic" 
+            src="imagen/default-profile.png" 
+            alt="Foto de Perfil" 
+            class="profile-pic"
+            onerror="this.src='imagen/is-there-any-possible-way-to-mak.png';"
+          >
+          <div class="dropdown-content">
+            <a href="perfil.html" id="profile-link">Perfil</a>
+            <a href="#" id="logout-link">Sair</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="home">
+      <!-- DESATIVADO Por enquanto <img src="imagen/702814.png" alt="..."> -->
+      <h1>Que tal começar a aprender as possibilidades da IA de forma gratuita?</h1>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2024 Gerador de Imagens. Todos os direitos reservados.</p>
+  </footer>
+</div>
+
+<script>
+'use strict';
+
+// Pega o token do localStorage
+const token = localStorage.getItem('token');
+
+if (!token) {
+  window.location.href = 'loggin.html';
+}
+
+// Função para buscar dados do usuário do backend
+async function getUserData() {
+  try {
+    const response = await fetch('http://localhost:3000/user/profile', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (response.status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "loggin.html";
+      return;
+    }
+
+    const data = await response.json();
+
+    // Atualiza a foto de perfil (Google ou padrão local)
+    const profilePic = document.getElementById("user-profile-pic");
+    if (profilePic) profilePic.src = data.photoURL || "imagen/default-profile.png";
+
+  } catch (err) {
+    console.error("Erro ao carregar dados do usuário:", err);
+  }
+}
+
+getUserData();
+
+// Logout
+document.getElementById("logout-link").addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "loggin.html";
+});
+</script>
+</body>
+</html>

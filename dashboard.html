@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao CodeAI</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/958455829139456021/1301890068201603163/logo-removebg-preview.png" type="image/x-icon">
+
+    <link rel="icon" href="/imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" type="image/x-icon">
+
+    
+</head>
+<body>
+    <link rel="icon" href="/imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" type="image/x-icon">
+    <div class="fundo">
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="imagen/Gemini_Generated_Image_mx02zmmx02zmmx02.png" alt="Logo" class="logo-img">
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="dashboard-box">
+                <h1 id="welcome-message">Bem-vindo(a), [Carregando...]</h1>
+                <p>Seu acesso está pronto. O que você gostaria de fazer agora?</p>
+
+                <div class="links-container">
+                    <a href="index.html" class="btn-action">
+                        <i class="fas fa-magic"></i> Gerar Imagens (Estudar)
+                    </a>
+                    <a href="planos.html" class="btn-action secondary">
+                        <i class="fas fa-credit-card"></i> Ver Meus Planos
+                    </a>
+                    <a href="perfil.html" class="btn-action tertiary">
+                        <i class="fas fa-user"></i> Acessar Perfil
+                    </a>
+                </div>
+
+                <div class="logout-link">
+                    <a href="#" id="logout-link">Sair da Conta</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        'use strict';
+
+        const token = localStorage.getItem('token');
+        const welcomeMessage = document.getElementById('welcome-message');
+
+        if (!token) {
+            window.location.href = 'loggin.html';
+        }
+
+        // Função para buscar dados do usuário e personalizar a mensagem
+        async function loadUserName() {
+            try {
+                const response = await fetch('http://localhost:3000/user/profile', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 401) {
+                    throw new Error("Não autorizado");
+                }
+
+                const data = await response.json();
+                
+                // Exibe o primeiro nome do usuário
+                const firstName = data.name ? data.name.split(' ')[0] : 'Usuário CodeAI';
+                welcomeMessage.textContent = `Bem-vindo(a), ${firstName}!`;
+
+            } catch (err) {
+                console.error(err);
+                welcomeMessage.textContent = 'Bem-vindo(a)!';
+            }
+        }
+
+        // Função de Logout
+        document.getElementById('logout-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            // O localStorage.removeItem('user'); (fallback) também pode ser útil
+            // Depende da sua implementação exata do perfil.js
+            localStorage.removeItem('user'); 
+            window.location.href = 'loggin.html';
+        });
+
+        loadUserName();
+
+    </script>
+</body>
+</html>
